@@ -20,5 +20,5 @@ const UserDbSchema = new Schema({
   },
 }, { collection: 'User' })
 
-module.exports = UserDbModel = model('User', UserDbSchema)
+module.exports = userDbModel = model('User', UserDbSchema)
 
