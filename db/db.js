@@ -22,3 +22,4 @@ exports.closeDB = async () => {
     console.error("\x1b[31m\x1b[0m", err.message)
   }
 }
+

@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose')
 
-const EntreeSchema = new mongoose.Schema({
+const MenuItemSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -10,10 +10,10 @@ const EntreeSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-  tags: {
+  menuId: {
     type: [String],
     required: true
   },
-}, { collection: 'Entree'})
+}, { collection: 'MenuItem'})
 
-module.exports = entreeDbModel = mongoose.model('Entree', EntreeSchema)
+module.exports = entreeDbModel = mongoose.model('MenuItem', MenuItemSchema)
