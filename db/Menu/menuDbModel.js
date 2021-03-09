@@ -26,7 +26,7 @@ const MenuSchema = new mongoose.Schema({
     required: true
   },
   year: {
-    type: Int32,
+    type: Number,
     required: false
   },
   term: {

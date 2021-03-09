@@ -11,7 +11,7 @@ const MenuItemSchema = new mongoose.Schema({
     required: false
   },
   menuId: {
-    type: [String],
+    type: String,
     required: true
   },
 }, { collection: 'MenuItem'})

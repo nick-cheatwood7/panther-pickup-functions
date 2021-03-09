@@ -11,7 +11,7 @@ const UserDbSchema = new Schema({
     required: false,
   },
   privilegeSet: {
-    type: [String],
+    type: String,
     required: true,
   },
   studentId: {

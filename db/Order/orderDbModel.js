@@ -6,7 +6,7 @@ const OrderSchema = new mongoose.Schema({
     required: true
   },
   countItems: {
-    type: Int32,
+    type: Number,
     required: false
   }
 }, { collection: 'Order'})
