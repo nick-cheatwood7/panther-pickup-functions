@@ -19,8 +19,16 @@ const {
 
 const {
   getAllMenus,
-  getmenuById
+  getmenuById,
+  getMenusByYear,
+  getMenuByYearAndTerm
 } = require('./handlers/menu.js')
+
+const {
+  getAllMenuItems,
+  getMenuItemById,
+  getMenuItemsByMenuId
+} = require('./handlers/menuItem.js')
 
 // GET, POST, DELETE, UPDATE
 
@@ -29,9 +37,17 @@ app.get('/users', getAllUsers)
 app.get('/user/:userId', getUserById)
 app.get('/users/test', testDBProps)
 
-// TODO: Setup Menu routes
+// Menu routes
 app.get('/menus', getAllMenus)
 app.get('/menu/:menuId', getmenuById)
+app.get('/menus/:year', getMenusByYear)
+// TODO: Add query for term and year
+app.get('/menus/query/:params', getMenuByYearAndTerm)
+
+// MenuItem routes
+app.get('/menuItems/:id', getMenuItemById)
+app.get('/menuItems', getAllMenuItems)
+app.get('/menuItems/:menuId', getMenuItemsByMenuId)
 
 // init listener
 const createServer = () => {
