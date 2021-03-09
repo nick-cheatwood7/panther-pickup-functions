@@ -3,7 +3,7 @@ const { connectDB, closeDB } = require('../db/db.js')
 const config = ('../util/config.js')
 const mongoose = require('mongoose')
 
-const entreeDbModel = require('../db/entree/entreeDbModel.js')
+const entreeDbModel = require('../db/MenuItem/menuItemDbModel.js')
 
 exports.getAllEntrees = (req, res) => {
 
