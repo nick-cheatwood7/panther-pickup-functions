@@ -83,16 +83,18 @@ exports.getMenuByYearAndTerm = (req, res) => {
 
   console.log('Finding menu by year and term...')
 
+  console.log(req.params)
+
   let menuData = {}
 
   try {
-    const queryParams = { year: req.params.year, term: req.params.term }
+    const queryParams = { year: req.body.year, term: req.body.term }
     const menu = menuDbModel
 
     menu.find(queryParams, (err, menus) => {
       if (err) {
         console.error(err)
-        res.status(400).json({ error: err})
+        res.status(400).json({ error: err })
       } else {
         res.status(200).json(menus)
       }

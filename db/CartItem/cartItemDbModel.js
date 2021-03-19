@@ -2,14 +2,22 @@
 const mongoose = require('mongoose')
 
 const CartItemSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: false
+  },
     cartId: {
       type: String,
-      required: true
-    },
-    menuItemId: {
+      required: false
+  },
+    name: {
       type: String,
-      required: true
-    }
-}, { collection: 'CartItem'})
+      required: false
+  },
+  cost: {
+    type: Number,
+    required: false
+  }
+}, { collection: 'CartItems'})
 
-module.exports = entreeDbModel = mongoose.model('CartItem', CartItemSchema)
+module.exports = cartItemDbModel = mongoose.model('CartItems', CartItemSchema)

@@ -25,6 +25,15 @@ const {
 } = require('./handlers/menu.js')
 
 const {
+  getCartByUserId,
+  getCartById
+} = require('./handlers/cart.js')
+
+const {
+  getCartItemByCartId
+} = require('./handlers/cartItem.js')
+
+const {
   getAllMenuItems,
   getMenuItemById,
   getMenuItemsByMenuId
@@ -37,15 +46,22 @@ app.get('/users', getAllUsers)
 app.get('/user/:userId', getUserById)
 app.get('/users/test', testDBProps)
 
+// Cart routes
+app.get('/cart/:cartId', getCartById)
+app.get('/user/:userId/cart/', getCartByUserId)
+
+// CartItem routes
+app.get('/cartItems/:cartId', getCartItemByCartId)
+
 // Menu routes
 app.get('/menus', getAllMenus)
 app.get('/menu/:menuId', getmenuById)
 app.get('/menus/:year', getMenusByYear)
 // TODO: Add query for term and year
-app.get('/menus/query/:params', getMenuByYearAndTerm)
+app.post('/menus/query/', getMenuByYearAndTerm)
 
 // MenuItem routes
-app.get('/menuItems/:id', getMenuItemById)
+app.get('/menuItem/:id', getMenuItemById)
 app.get('/menuItems', getAllMenuItems)
 app.get('/menuItems/:menuId', getMenuItemsByMenuId)
 

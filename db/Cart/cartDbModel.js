@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 
 const CartSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: false
-  },
   userId: {
     type: String,
     required: true
@@ -12,7 +8,11 @@ const CartSchema = new mongoose.Schema({
   countItems: {
     type: Number,
     required: false
+  },
+  totalCost: {
+    type: Number,
+    required: false
   }
 }, { collection: 'Cart'})
 
-module.exports = menuDbModel = mongoose.model('Cart', CartSchema)
+module.exports = cartDbModel = mongoose.model('Cart', CartSchema)
