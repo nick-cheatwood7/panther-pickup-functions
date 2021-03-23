@@ -27,3 +27,30 @@ exports.getCartItemByCartId = (req, res) => {
   }
 
 }
+
+exports.getCartItemByUserId = (req, res) => {
+
+  console.log('Finding cartitem by user id...')
+
+  let cartItemData = {}
+
+  try {
+
+    const queryParams = {userId: req.params.userId}
+
+    const cartItem = cartItemDbModel
+
+    cartItem.find(queryParams, (err, cartItems) => {
+      if (err) {
+        console.error(err)
+        res.status(400).json({ error: err })
+      } else {
+        res.status(200).json(cartItems)
+      }
+    })
+  } catch(err) {
+    console.error(err)
+    res.status(500).json({ message: 'Internal Server Error'})
+  }
+
+}

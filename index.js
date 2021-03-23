@@ -30,7 +30,8 @@ const {
 } = require('./handlers/cart.js')
 
 const {
-  getCartItemByCartId
+  getCartItemByCartId,
+  getCartItemByUserId
 } = require('./handlers/cartItem.js')
 
 const {
@@ -51,7 +52,8 @@ app.get('/cart/:cartId', getCartById)
 app.get('/user/:userId/cart/', getCartByUserId)
 
 // CartItem routes
-app.get('/cartItems/:cartId', getCartItemByCartId)
+app.get('cart/:cartId/cartItems', getCartItemByCartId)
+app.get('/user/:userId/cartItems', getCartItemByUserId)
 
 // Menu routes
 app.get('/menus', getAllMenus)

@@ -10,6 +10,10 @@ const CartItemSchema = new mongoose.Schema({
       type: String,
       required: false
   },
+  menuItemId: {
+    type: String,
+    required: false
+  },
     name: {
       type: String,
       required: false
