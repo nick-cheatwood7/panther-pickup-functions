@@ -14,6 +14,10 @@ const MenuItemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  imageUrl: {
+    type: String,
+    required: false
+  }
 }, { collection: 'MenuItem'})
 
 module.exports = entreeDbModel = mongoose.model('MenuItem', MenuItemSchema)

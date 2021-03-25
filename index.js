@@ -5,6 +5,9 @@ const express = require('express')
 const app = express()
 const router = express.Router()
 
+const cors = require('cors')
+app.use(cors())
+
 const { connectDB } = require('./db/db.js')
 
 // init port
@@ -31,7 +34,8 @@ const {
 
 const {
   getCartItemByCartId,
-  getCartItemByUserId
+  getCartItemByUserId,
+  createCartItem
 } = require('./handlers/cartItem.js')
 
 const {
@@ -54,6 +58,7 @@ app.get('/user/:userId/cart/', getCartByUserId)
 // CartItem routes
 app.get('cart/:cartId/cartItems', getCartItemByCartId)
 app.get('/user/:userId/cartItems', getCartItemByUserId)
+app.post('/cartItem/create', createCartItem)
 
 // Menu routes
 app.get('/menus', getAllMenus)

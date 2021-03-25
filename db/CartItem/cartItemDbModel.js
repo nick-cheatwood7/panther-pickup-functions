@@ -21,6 +21,10 @@ const CartItemSchema = new mongoose.Schema({
   cost: {
     type: Number,
     required: false
+  },
+  imageUrl: {
+    type: String,
+    required: false
   }
 }, { collection: 'CartItems'})
 

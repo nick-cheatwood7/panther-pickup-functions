@@ -54,3 +54,35 @@ exports.getCartItemByUserId = (req, res) => {
   }
 
 }
+
+exports.createCartItem = (req, res) => {
+
+  console.log('Adding cart item to DB...')
+
+  // validate cart item data
+  const cartItemData = {
+    userId: req.body.userId,
+    menuItemId: req.body.menuItemId,
+    name: req.body.name,
+    imageUrl: req.body.imageUrl
+  }
+
+  console.log(cartItemData)
+
+  try {
+    const cartItem = cartItemDbModel
+
+    const doc = new cartItem()
+
+    doc.save()
+
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ message: 'Internal Server Error' })
+  }
+
+}
+
+exports.removeCartItem = (req, res) => {
+
+}
