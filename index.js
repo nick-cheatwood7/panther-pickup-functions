@@ -2,10 +2,11 @@
 // import express and create a new express app
 const http = require('http')
 const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+
 const app = express()
 const router = express.Router()
-
-const cors = require('cors')
 app.use(cors())
 
 const { connectDB } = require('./db/db.js')
