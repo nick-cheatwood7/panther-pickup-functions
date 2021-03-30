@@ -9,7 +9,7 @@ const app = express()
 const router = express.Router()
 app.use(cors())
 
-const { connectDB } = require('./db/db.js')
+const Db = require('./db/db.js')
 
 // init port
 const PORT = 5005
@@ -19,31 +19,31 @@ const {
   getAllUsers,
   getUserById,
   testDBProps
-} = require('./handlers/users.js')
+} = require('./routes/user.routes.js')
 
 const {
   getAllMenus,
   getmenuById,
   getMenusByYear,
   getMenuByYearAndTerm
-} = require('./handlers/menu.js')
+} = require('./routes/menu.routes.js')
 
 const {
   getCartByUserId,
   getCartById
-} = require('./handlers/cart.js')
+} = require('./routes/cart.routes.js')
 
 const {
   getCartItemByCartId,
   getCartItemByUserId,
   createCartItem
-} = require('./handlers/cartItem.js')
+} = require('./routes/cartItem.routes.js')
 
 const {
   getAllMenuItems,
   getMenuItemById,
   getMenuItemsByMenuId
-} = require('./handlers/menuItem.js')
+} = require('./routes/menuItem.routes.js')
 
 // GET, POST, DELETE, UPDATE
 
@@ -80,7 +80,8 @@ const createServer = () => {
 }
 
 const main = () => {
-  connectDB() // connect to our database
+  // Connect our databse
+  const db = new Db().connect()
   createServer()
 }
 

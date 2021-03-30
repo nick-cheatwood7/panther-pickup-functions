@@ -1,5 +1,7 @@
 
 const cartItemDbModel = require('../db/cartItem/cartItemDbModel.js')
+const Db = require('../db/db')
+const db = new Db()
 
 exports.getCartItemByCartId = (req, res) => {
 
@@ -28,29 +30,20 @@ exports.getCartItemByCartId = (req, res) => {
 
 }
 
-exports.getCartItemByUserId = (req, res) => {
+exports.getCartItemByUserId = async (req, res) => {
 
-  console.log('Finding cartitem by user id...')
+  console.log('Finding cart items by user id...')
 
-  let cartItemData = {}
+  const queryParams = { userId: req.params.userId }
+
+  let cartItemsFindResponse = []
 
   try {
-
-    const queryParams = {userId: req.params.userId}
-
-    const cartItem = cartItemDbModel
-
-    cartItem.find(queryParams, (err, cartItems) => {
-      if (err) {
-        console.error(err)
-        res.status(400).json({ error: err })
-      } else {
-        res.status(200).json(cartItems)
-      }
-    })
-  } catch(err) {
-    console.error(err)
-    res.status(500).json({ message: 'Internal Server Error'})
+    cartItemsFindResponse = await db.find(queryParams, 'CartItems')
+    res.status(200).json(cartItemsFindResponse)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ message: 'Internal Server Error' })
   }
 
 }
