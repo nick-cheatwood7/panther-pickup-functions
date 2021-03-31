@@ -55,7 +55,7 @@ class Db {
   insertOne = async (data, collectionName) => {
     try {
       const collection = this.db.collection(collectionName)
-      const saveResponse = await collection.insertOne(data.record)
+      const saveResponse = await collection.insertOne(data)
       return saveResponse.ops[0]
     } catch (err) {
       console.log(err)

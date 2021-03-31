@@ -1,34 +1,8 @@
 
+const CartItem = require('../db/cartItem/cartItemDbModel.js')
 const cartItemDbModel = require('../db/cartItem/cartItemDbModel.js')
 const Db = require('../db/db')
 const db = new Db()
-
-exports.getCartItemByCartId = (req, res) => {
-
-  console.log('Finding cartitem by cart id...')
-
-  let cartItemData = {}
-
-  try {
-
-    const queryParams = {cartId: req.params.cartId}
-
-    const cartItem = cartItemDbModel
-
-    cartItem.find(queryParams, (err, cartItems) => {
-      if (err) {
-        console.error(err)
-        res.status(400).json({ error: err })
-      } else {
-        res.status(200).json(cartItems)
-      }
-    })
-  } catch(err) {
-    console.error(err)
-    res.status(500).json({ message: 'Internal Server Error'})
-  }
-
-}
 
 exports.getCartItemByUserId = async (req, res) => {
 
@@ -48,30 +22,29 @@ exports.getCartItemByUserId = async (req, res) => {
 
 }
 
-exports.createCartItem = (req, res) => {
+exports.addCartItem = async (req, res) => {
 
   console.log('Adding cart item to DB...')
 
   // validate cart item data
-  const cartItemData = {
+  const cartItem = new CartItem({
     userId: req.body.userId,
     menuItemId: req.body.menuItemId,
     name: req.body.name,
-    imageUrl: req.body.imageUrl
-  }
+    imageUrl: req.body.imageUrl,
+    cost: req.body.cost
+  })
 
-  console.log(cartItemData)
+  console.log(cartItem)
+
+  let cartItemsAddResponse = []
 
   try {
-    const cartItem = cartItemDbModel
-
-    const doc = new cartItem()
-
-    doc.save()
-
+    cartItemsAddResponse = await db.insertOne(cartItem, 'CartItems')
+    res.status(200).json(cartItemsAddResponse)
   } catch (err) {
-    console.error(err)
-    res.status(500).json({ message: 'Internal Server Error' })
+    console.log(err)
+    res.status(500).json({ message: 'Internal Server Error'})
   }
 
 }

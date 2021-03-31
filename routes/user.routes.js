@@ -3,7 +3,7 @@ const { connectDB, closeDB } = require('../db/db.js')
 const config = ('../util/config.js')
 const mongoose = require('mongoose')
 
-const userDbModel = require('../db/User/userDbModel.js')
+const userDbModel = require('../db/User/UserDbModel.js')
 
 exports.getAllUsers = (req, res) => {
 
